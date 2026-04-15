@@ -17,4 +17,3 @@ def spark():
 @pytest.fixture()
 def eng() -> SparkExecutionEngine:
     return SparkExecutionEngine()
-

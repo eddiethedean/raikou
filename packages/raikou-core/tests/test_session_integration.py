@@ -23,4 +23,3 @@ def test_get_or_create_spark_sets_env_and_accepts_config_dict() -> None:
         assert os.environ["PYSPARK_DRIVER_PYTHON"] == sys.executable
     finally:
         spark.stop()
-

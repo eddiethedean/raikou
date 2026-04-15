@@ -52,21 +52,16 @@ def test_in_list_normalizes_lit_values() -> None:
     assert df["x"].seen == [1, 2, "a"]
 
 
-def test_when_without_else_builds_when_only() -> None:
-    # Use Spark itself for minimal integration with expression builder.
-    pytest.importorskip("pyspark")
-    from pyspark.sql import SparkSession
+@pytest.mark.spark
+def test_when_without_else_builds_when_only(spark) -> None:
+    # Minimal Spark integration with expression builder (reuse shared session).
     from pyspark.sql import functions as F
 
-    spark = SparkSession.builder.master("local[1]").appName("raikou-expr-unit").getOrCreate()
-    try:
-        df = spark.createDataFrame([{"x": 1}, {"x": 2}])
-        expr = When(condition=(F.col("x") > 1), then_value=Lit("yes"))
-        col = expr.to_column(df)
-        out = [r[0] for r in df.select(col.alias("v")).orderBy("x").collect()]
-        assert out == [None, "yes"]
-    finally:
-        spark.stop()
+    df = spark.createDataFrame([{"x": 1}, {"x": 2}])
+    expr = When(condition=(F.col("x") > 1), then_value=Lit("yes"))
+    col = expr.to_column(df)
+    out = [r[0] for r in df.select(col.alias("v")).orderBy("x").collect()]
+    assert out == [None, "yes"]
 
 
 def test_to_column_passthrough_non_sparkexpr() -> None:
@@ -82,4 +77,3 @@ def test_make_when_smoke() -> None:
 def test_make_in_list_smoke() -> None:
     ex = make_in_list("x", [1, 2, 3])
     assert isinstance(ex, InList)
-

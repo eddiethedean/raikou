@@ -10,6 +10,9 @@ def connect(*, app_name: str = "raikou", master: str = "local[2]", **configs: An
 
     os.environ.setdefault("PYSPARK_PYTHON", sys.executable)
     os.environ.setdefault("PYSPARK_DRIVER_PYTHON", sys.executable)
+    # Avoid hostname resolution edge cases in constrained environments.
+    os.environ.setdefault("SPARK_LOCAL_IP", "127.0.0.1")
+    os.environ.setdefault("SPARK_DRIVER_HOST", "127.0.0.1")
 
     from pyspark.sql import SparkSession
 

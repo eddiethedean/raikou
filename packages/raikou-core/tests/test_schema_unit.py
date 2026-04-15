@@ -4,7 +4,7 @@ import pytest
 
 
 def test_spark_schema_to_descriptors_scalar_types() -> None:
-    pyspark = pytest.importorskip("pyspark")
+    pytest.importorskip("pyspark")
     from pyspark.sql import types as T
 
     from raikou_core.schema import spark_schema_to_descriptors
@@ -55,4 +55,3 @@ def test_spark_schema_to_descriptors_nested_struct_list_map() -> None:
     assert desc["st"]["kind"] == "struct"
     assert desc["xs"]["kind"] == "list"
     assert desc["m"]["kind"] == "map"
-

@@ -24,4 +24,3 @@ def test_expr_is_global_agg_marker_shape() -> None:
     assert eng.expr_is_global_agg(("_global_agg", object())) is True
     assert eng.expr_is_global_agg(("_global_agg",)) is False
     assert eng.expr_is_global_agg("x") is False
-

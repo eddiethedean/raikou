@@ -122,4 +122,3 @@ def test_write_csv_separator(tmp_path: Path, spark, eng: SparkExecutionEngine) -
     out_dir = tmp_path / "csv_sc"
     eng.write_csv(plan, root, str(out_dir), separator=ord(";"))
     assert out_dir.exists()
-

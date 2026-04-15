@@ -15,6 +15,9 @@ def get_or_create_spark(*, app_name: str = "raikou-core", **builder_kwargs: Any)
     # Force executors/workers to use the current Python executable (common local-dev footgun).
     os.environ.setdefault("PYSPARK_PYTHON", sys.executable)
     os.environ.setdefault("PYSPARK_DRIVER_PYTHON", sys.executable)
+    # Avoid hostname resolution edge cases in constrained environments.
+    os.environ.setdefault("SPARK_LOCAL_IP", "127.0.0.1")
+    os.environ.setdefault("SPARK_DRIVER_HOST", "127.0.0.1")
 
     from pyspark.sql import SparkSession
 

@@ -49,6 +49,7 @@ nav:
   - Concepts: concepts.md
   - API guide: api_guide.md
   - Development: development.md
+  - Contributing: contributing.md
   - Roadmap: roadmap.md
   - Code reference:
       - raikou: reference/raikou.md

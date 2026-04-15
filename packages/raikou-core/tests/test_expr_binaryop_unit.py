@@ -60,4 +60,3 @@ def test_binaryop_unsupported_raises() -> None:
     df = {"x": FakeCol("x")}
     with pytest.raises(TypeError):
         BinaryOp("??", df["x"], 1).to_column(df)
-

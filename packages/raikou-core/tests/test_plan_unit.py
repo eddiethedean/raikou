@@ -1,7 +1,5 @@
 from __future__ import annotations
 
-from typing import Any
-
 from pydantic import BaseModel
 
 from raikou_core.plan import SparkPlan, field_types_to_descriptors
@@ -57,4 +55,3 @@ def test_field_types_to_descriptors_unknown_fallback() -> None:
 
     out = field_types_to_descriptors({"w": Weird})
     assert out["w"] == {"base": "unknown", "nullable": False}
-

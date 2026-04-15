@@ -1,6 +1,6 @@
 # Development
 
-See [CONTRIBUTING.md](../CONTRIBUTING.md) for the full setup.
+See [Contributing](contributing.md) for the full setup.
 
 Common commands:
 

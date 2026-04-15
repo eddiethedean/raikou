@@ -10,13 +10,14 @@ class Row(Schema):
 
 
 def test_schema_forbids_extra_fields() -> None:
+    # Use dict-unpack to avoid static \"unknown-argument\" diagnostics.
     with pytest.raises(Exception):
-        Row(x=1, extra=2)  # type: ignore[call-arg]
+        Row(**{"x": 1, "extra": 2})
 
 
 def test_dataframe_generic_requires_schema_subclass() -> None:
     with pytest.raises(TypeError, match="expects a pydantic BaseModel type"):
-        RaikouDataFrame[int]  # type: ignore[type-arg]
+        RaikouDataFrame.__class_getitem__(int)
 
 
 def test_from_spark_dataframe_requires_parameterized_class() -> None:
@@ -42,4 +43,3 @@ def test_from_spark_dataframe_ignores_descriptor_errors(monkeypatch) -> None:
     monkeypatch.setattr(df_mod, "spark_schema_to_descriptors", boom)
     out = RaikouDataFrame[Row].from_spark_dataframe(DummyDF())
     assert out is not None
-

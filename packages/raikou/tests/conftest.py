@@ -13,4 +13,3 @@ def spark():
         pytest.skip(f"Spark is not available: {exc!r}")
     yield s
     s.stop()
-

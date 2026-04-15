@@ -8,6 +8,7 @@ version = "0.1.0"
 description = "Spark DataFrame helpers on raikou-core: sessions, frames, and expression helpers."
 readme = "README.md"
 license = "MIT"
+license-files = ["LICENSE"]
 requires-python = ">=3.10"
 authors = [{ name = "Odos Matthews", email = "odosmatthews@gmail.com" }]
 maintainers = [{ name = "Odos Matthews", email = "odosmatthews@gmail.com" }]
@@ -37,6 +38,7 @@ dependencies = [
 dev = [
   "pytest>=8.0",
   "pytest-cov>=4.1",
+  "pytest-xdist>=3.0",
   "ruff>=0.8",
   "ty>=0.0.28",
 ]
@@ -46,9 +48,6 @@ Homepage = "https://github.com/eddiethedean/raikou"
 Repository = "https://github.com/eddiethedean/raikou"
 Issues = "https://github.com/eddiethedean/raikou/issues"
 Changelog = "https://github.com/eddiethedean/raikou/blob/main/CHANGELOG.md"
-
-[tool.setuptools]
-license-files = ["LICENSE"]
 
 [tool.setuptools.packages.find]
 where = ["src"]
