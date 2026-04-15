@@ -1,0 +1,48 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "raikou"
+version = "0.1.0"
+description = "Spark DataFrame helpers on raikou-core: sessions, frames, and expression helpers."
+readme = "README.md"
+license = "MIT"
+requires-python = ">=3.10"
+authors = [{ name = "Odos Matthews", email = "odosmatthews@gmail.com" }]
+keywords = ["dataframe", "spark", "pyspark", "raikou-core", "data-engineering"]
+classifiers = [
+  "Development Status :: 3 - Alpha",
+  "Intended Audience :: Developers",
+  "Programming Language :: Python",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3 :: Only",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Operating System :: MacOS :: MacOS X",
+  "Operating System :: Microsoft :: Windows",
+  "Operating System :: POSIX :: Linux",
+]
+dependencies = [
+  "raikou-core>=0.1.0,<0.2",
+  "pyspark>=3.4,<4",
+  "typing-extensions>=4.5",
+]
+
+[project.optional-dependencies]
+dev = [
+  "pytest>=8.0",
+  "pytest-cov>=4.1",
+  "ruff>=0.8",
+  "ty>=0.0.28",
+]
+
+[project.urls]
+Homepage = "https://github.com/eddiethedean/raikou"
+Repository = "https://github.com/eddiethedean/raikou"
+Issues = "https://github.com/eddiethedean/raikou/issues"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+

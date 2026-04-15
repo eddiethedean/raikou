@@ -1,0 +1,40 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "raikou-core"
+version = "0.1.0"
+description = "Spark root materialization and ExecutionEngine implementation (pydantable-protocol + PySpark)."
+readme = "README.md"
+license = "MIT"
+requires-python = ">=3.10"
+classifiers = [
+  "Development Status :: 3 - Alpha",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: 3.13",
+]
+dependencies = [
+  "pydantable-protocol>=1.17.0,<2",
+  "pyspark>=3.4,<4",
+  "typing-extensions>=4.5",
+]
+
+[project.optional-dependencies]
+dev = [
+  "pytest>=8.0",
+  "ruff>=0.8",
+  "ty>=0.0.28",
+]
+
+[project.urls]
+Homepage = "https://github.com/eddiethedean/raikou-core"
+Repository = "https://github.com/eddiethedean/raikou-core"
+Issues = "https://github.com/eddiethedean/raikou-core/issues"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+

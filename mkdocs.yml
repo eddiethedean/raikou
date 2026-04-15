@@ -1,0 +1,54 @@
+site_name: raikou
+site_description: Spark helpers for Python — documentation for raikou and raikou-core
+repo_url: https://github.com/eddiethedean/raikou
+repo_name: eddiethedean/raikou
+edit_uri: edit/main/docs/
+
+docs_dir: docs
+site_dir: site
+strict: true
+
+theme:
+  name: material
+  palette:
+    - scheme: default
+      primary: indigo
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    - scheme: slate
+      primary: indigo
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+  features:
+    - content.code.copy
+    - navigation.expand
+    - navigation.sections
+    - toc.integrate
+
+markdown_extensions:
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences
+
+plugins:
+  - search
+  - mkdocstrings:
+      handlers:
+        python:
+          paths: [packages/raikou/src, packages/raikou-core/src]
+          options:
+            docstring_style: numpy
+            show_source: true
+            show_root_heading: true
+
+nav:
+  - Home: index.md
+  - Getting started: getting_started.md
+  - Development: development.md
+  - Roadmap: roadmap.md
+  - Code reference:
+      - raikou: reference/raikou.md
+      - raikou_core: reference/raikou_core.md
+

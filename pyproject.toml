@@ -1,0 +1,31 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+# Root is tooling only. Install packages from ./packages/.
+
+[tool.pytest.ini_options]
+minversion = "8.0"
+addopts = "-ra --strict-markers -p no:green_light --cov=packages/raikou-core/src/raikou_core --cov=packages/raikou/src/raikou --cov-report=term-missing"
+testpaths = ["packages/raikou-core/tests", "packages/raikou/tests"]
+
+[tool.coverage.run]
+source = ["packages/raikou-core/src/raikou_core", "packages/raikou/src/raikou"]
+omit = ["*/tests/*"]
+
+[tool.coverage.report]
+show_missing = true
+skip_covered = false
+fail_under = 74
+exclude_lines = [
+  "pragma: no cover",
+  "if TYPE_CHECKING:",
+]
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+
+[tool.uv.workspace]
+members = ["packages/raikou-core", "packages/raikou"]
+
