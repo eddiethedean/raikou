@@ -7,8 +7,7 @@ name = "raikou"
 version = "0.1.0"
 description = "Spark DataFrame helpers on raikou-core: sessions, frames, and expression helpers."
 readme = "README.md"
-license = "MIT"
-license-files = ["LICENSE"]
+license = { text = "MIT" }
 requires-python = ">=3.10"
 authors = [{ name = "Odos Matthews", email = "odosmatthews@gmail.com" }]
 maintainers = [{ name = "Odos Matthews", email = "odosmatthews@gmail.com" }]
@@ -51,4 +50,7 @@ Changelog = "https://github.com/eddiethedean/raikou/blob/main/CHANGELOG.md"
 
 [tool.setuptools.packages.find]
 where = ["src"]
+
+[tool.setuptools]
+license-files = ["LICENSE"]
 

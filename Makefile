@@ -1,5 +1,7 @@
 .PHONY: help test coverage coverage-html lint format format-check build build-check upload-pypi install-editable clean
 
+PYTHON ?= python
+
 help:
 	@echo "raikou monorepo"
 	@echo ""
@@ -14,8 +16,11 @@ help:
 	@echo " make upload-pypi       build then twine upload (needs creds)"
 	@echo " make clean             remove dist/ and build/ under packages/*"
 
-install-editable:
-	python -m pip install -e "./packages/raikou-core[dev]" -e "./packages/raikou[dev]"
+check-python:
+	@$(PYTHON) -c 'import sys; sys.exit("Python 3.10+ is required (got %s)" % sys.version.split()[0]) if sys.version_info < (3, 10) else sys.exit(0)'
+
+install-editable: check-python
+	$(PYTHON) -m pip install -e "./packages/raikou-core[dev]" -e "./packages/raikou[dev]"
 
 test:
 	pytest
@@ -37,14 +42,14 @@ format-check:
 
 build-check: build
 
-build:
-	cd packages/raikou-core && rm -rf dist build && python -m build && python -m twine check dist/*
-	cd packages/raikou && rm -rf dist build && python -m build && python -m twine check dist/*
+build: check-python
+	cd packages/raikou-core && rm -rf dist build && $(PYTHON) -m build && $(PYTHON) -m twine check dist/*
+	cd packages/raikou && rm -rf dist build && $(PYTHON) -m build && $(PYTHON) -m twine check dist/*
 
 # Requires: pip install build twine ; PyPI token via TWINE_USERNAME / TWINE_PASSWORD.
 upload-pypi: build
-	cd packages/raikou-core && python -m twine upload dist/*
-	cd packages/raikou && python -m twine upload dist/*
+	cd packages/raikou-core && $(PYTHON) -m twine upload dist/*
+	cd packages/raikou && $(PYTHON) -m twine upload dist/*
 
 clean:
 	rm -rf packages/raikou-core/dist packages/raikou-core/build

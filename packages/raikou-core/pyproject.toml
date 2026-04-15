@@ -7,8 +7,7 @@ name = "raikou-core"
 version = "0.1.0"
 description = "Spark root materialization and ExecutionEngine implementation (pydantable-protocol + PySpark)."
 readme = "README.md"
-license = "MIT"
-license-files = ["LICENSE"]
+license = { text = "MIT" }
 requires-python = ">=3.10"
 authors = [{ name = "Odos Matthews", email = "odosmatthews@gmail.com" }]
 maintainers = [{ name = "Odos Matthews", email = "odosmatthews@gmail.com" }]
@@ -49,4 +48,7 @@ Changelog = "https://github.com/eddiethedean/raikou/blob/main/CHANGELOG.md"
 
 [tool.setuptools.packages.find]
 where = ["src"]
+
+[tool.setuptools]
+license-files = ["LICENSE"]
 
