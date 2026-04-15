@@ -5,21 +5,9 @@ import pytest
 from raikou_core.engine import SparkExecutionEngine
 from raikou_core.expr import BinaryOp, Col, Lit
 from raikou_core.roots import SparkRoot
-from raikou_core.session import get_or_create_spark
 
 
-@pytest.fixture(scope="session")
-def spark():
-    s = get_or_create_spark(app_name="raikou-core-tests")
-    yield s
-    s.stop()
-
-
-@pytest.fixture()
-def eng() -> SparkExecutionEngine:
-    return SparkExecutionEngine()
-
-
+@pytest.mark.spark
 def test_select_filter_with_columns_collect(spark, eng: SparkExecutionEngine) -> None:
     df = spark.createDataFrame([{"x": 1, "y": "a"}, {"x": 2, "y": "b"}])
     plan = eng.make_plan(field_types={})
@@ -31,6 +19,7 @@ def test_select_filter_with_columns_collect(spark, eng: SparkExecutionEngine) ->
     assert out == {"y": ["b"], "z": [12]}
 
 
+@pytest.mark.spark
 def test_sort_unique_slice(spark, eng: SparkExecutionEngine) -> None:
     df = spark.createDataFrame([{"x": 2}, {"x": 1}, {"x": 1}])
     plan = eng.make_plan(field_types={})
@@ -42,6 +31,7 @@ def test_sort_unique_slice(spark, eng: SparkExecutionEngine) -> None:
     assert out["x"] == [1, 2]
 
 
+@pytest.mark.spark
 def test_unnest_struct(spark, eng: SparkExecutionEngine) -> None:
     from pyspark.sql import types as T
 
@@ -65,6 +55,7 @@ def test_unnest_struct(spark, eng: SparkExecutionEngine) -> None:
     assert "addr_street" in descriptors
 
 
+@pytest.mark.spark
 def test_explode_list(spark, eng: SparkExecutionEngine) -> None:
     df = spark.createDataFrame([{"id": 1, "tags": [1, 2]}, {"id": 2, "tags": [3]}])
     plan = eng.make_plan(field_types={})
@@ -74,6 +65,7 @@ def test_explode_list(spark, eng: SparkExecutionEngine) -> None:
     assert out["tags"] == [1, 2, 3]
 
 
+@pytest.mark.spark
 def test_join_and_groupby(spark, eng: SparkExecutionEngine) -> None:
     left = spark.createDataFrame([{"k": 1, "v": 10}, {"k": 2, "v": 20}])
     right = spark.createDataFrame([{"k": 1, "w": 7}, {"k": 1, "w": 8}])

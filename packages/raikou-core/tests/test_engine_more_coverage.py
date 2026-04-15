@@ -9,19 +9,6 @@ from pydantable_protocol.exceptions import UnsupportedEngineOperationError
 from raikou_core.engine import SparkExecutionEngine
 from raikou_core.roots import SparkRoot
 from raikou_core.schema import spark_schema_to_descriptors
-from raikou_core.session import get_or_create_spark
-
-
-@pytest.fixture(scope="session")
-def spark():
-    s = get_or_create_spark(app_name="raikou-core-more-tests")
-    yield s
-    s.stop()
-
-
-@pytest.fixture()
-def eng() -> SparkExecutionEngine:
-    return SparkExecutionEngine()
 
 
 def test_plan_schema_descriptors_tracks_select_drop_rename(eng: SparkExecutionEngine) -> None:
@@ -35,6 +22,7 @@ def test_plan_schema_descriptors_tracks_select_drop_rename(eng: SparkExecutionEn
     assert set(plan4.schema_descriptors()) == {"x"}
 
 
+@pytest.mark.spark
 def test_schema_to_descriptors_smoke(spark) -> None:
     df = spark.createDataFrame([{"x": 1, "y": "a"}])
     desc = spark_schema_to_descriptors(df.schema)
@@ -42,6 +30,7 @@ def test_schema_to_descriptors_smoke(spark) -> None:
     assert desc["x"]["base"] in ("int", "unknown")
 
 
+@pytest.mark.spark
 def test_execute_concat_except_intersect_all(spark, eng: SparkExecutionEngine) -> None:
     left_df = spark.createDataFrame([{"x": 1}, {"x": 2}, {"x": 2}])
     right_df = spark.createDataFrame([{"x": 2}])
@@ -61,6 +50,7 @@ def test_execute_concat_except_intersect_all(spark, eng: SparkExecutionEngine) -
     assert out3["x"] == [2]
 
 
+@pytest.mark.spark
 def test_posexplode(spark, eng: SparkExecutionEngine) -> None:
     df = spark.createDataFrame([{"id": 1, "tags": [5, 6]}])
     plan = eng.make_plan({})
@@ -72,6 +62,7 @@ def test_posexplode(spark, eng: SparkExecutionEngine) -> None:
     assert out["val"] == [5, 6]
 
 
+@pytest.mark.spark
 def test_sinks_parquet_csv_json(tmp_path: Path, spark, eng: SparkExecutionEngine) -> None:
     df = spark.createDataFrame([{"x": 1, "y": "a"}])
     root = SparkRoot(df)

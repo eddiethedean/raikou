@@ -8,6 +8,9 @@ build-backend = "setuptools.build_meta"
 minversion = "8.0"
 addopts = "-ra --strict-markers -p no:green_light --cov=packages/raikou-core/src/raikou_core --cov=packages/raikou/src/raikou --cov-report=term-missing"
 testpaths = ["packages/raikou-core/tests", "packages/raikou/tests"]
+markers = [
+  "spark: tests that require a local SparkSession",
+]
 
 [tool.coverage.run]
 source = ["packages/raikou-core/src/raikou_core", "packages/raikou/src/raikou"]
@@ -16,7 +19,7 @@ omit = ["*/tests/*"]
 [tool.coverage.report]
 show_missing = true
 skip_covered = false
-fail_under = 74
+fail_under = 90
 exclude_lines = [
   "pragma: no cover",
   "if TYPE_CHECKING:",

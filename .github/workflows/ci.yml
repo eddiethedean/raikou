@@ -37,7 +37,7 @@ jobs:
           PYSPARK_PYTHON: python
           PYSPARK_DRIVER_PYTHON: python
         run: |
-          pytest --cov=packages/raikou-core/src/raikou_core --cov=packages/raikou/src/raikou --cov-report=term-missing --cov-fail-under=74
+          pytest --cov=packages/raikou-core/src/raikou_core --cov=packages/raikou/src/raikou --cov-report=term-missing --cov-fail-under=90
 
   docs:
     runs-on: ubuntu-latest
