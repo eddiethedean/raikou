@@ -8,14 +8,24 @@ version = "0.1.0"
 description = "Spark root materialization and ExecutionEngine implementation (pydantable-protocol + PySpark)."
 readme = "README.md"
 license = "MIT"
+license-files = ["LICENSE"]
 requires-python = ">=3.10"
+authors = [{ name = "Odos Matthews", email = "odosmatthews@gmail.com" }]
+maintainers = [{ name = "Odos Matthews", email = "odosmatthews@gmail.com" }]
+keywords = ["spark", "pyspark", "execution-engine", "dataframe", "pydantable"]
 classifiers = [
   "Development Status :: 3 - Alpha",
+  "Intended Audience :: Developers",
+  "Programming Language :: Python",
   "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3 :: Only",
   "Programming Language :: Python :: 3.10",
   "Programming Language :: Python :: 3.11",
   "Programming Language :: Python :: 3.12",
   "Programming Language :: Python :: 3.13",
+  "Operating System :: MacOS :: MacOS X",
+  "Operating System :: Microsoft :: Windows",
+  "Operating System :: POSIX :: Linux",
 ]
 dependencies = [
   "pydantable-protocol>=1.17.0,<2",
@@ -31,9 +41,10 @@ dev = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/eddiethedean/raikou-core"
-Repository = "https://github.com/eddiethedean/raikou-core"
-Issues = "https://github.com/eddiethedean/raikou-core/issues"
+Homepage = "https://github.com/eddiethedean/raikou"
+Repository = "https://github.com/eddiethedean/raikou"
+Issues = "https://github.com/eddiethedean/raikou/issues"
+Changelog = "https://github.com/eddiethedean/raikou/blob/main/CHANGELOG.md"
 
 [tool.setuptools.packages.find]
 where = ["src"]

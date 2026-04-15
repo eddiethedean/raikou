@@ -46,6 +46,8 @@ plugins:
 nav:
   - Home: index.md
   - Getting started: getting_started.md
+  - Concepts: concepts.md
+  - API guide: api_guide.md
   - Development: development.md
   - Roadmap: roadmap.md
   - Code reference:
